@@ -1,6 +1,8 @@
 import $ from './lib/lib';
 
 $('button').on('click', function() {
-    $(this).toggleClass('active');
+    $('div').eq(1).toggleClass('active');
 });
+
+console.log($('button').html('hello'));
 
