@@ -1934,10 +1934,13 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
+/* harmony import */ var core_js_modules_web_dom_collections_iterator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/web.dom-collections.iterator */ "./node_modules/core-js/modules/web.dom-collections.iterator.js");
+/* harmony import */ var core_js_modules_web_dom_collections_iterator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
 
 
-_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.html = function (content) {
+
+_core__WEBPACK_IMPORTED_MODULE_1__["default"].prototype.html = function (content) {
   for (let i = 0; i < this.length; i++) {
     if (content) {
       this[i].innerHTML = content;
@@ -1949,7 +1952,7 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.html = function (content
   return this;
 };
 
-_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.eq = function (i) {
+_core__WEBPACK_IMPORTED_MODULE_1__["default"].prototype.eq = function (i) {
   const swap = this[i];
   const objLength = Object.keys(this).length;
 
@@ -1959,6 +1962,47 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.eq = function (i) {
 
   this[0] = swap;
   this.length = 1;
+  return this;
+};
+
+_core__WEBPACK_IMPORTED_MODULE_1__["default"].prototype.index = function () {
+  const parent = this[0].parentNode;
+  const childs = [...parent.children];
+
+  const findMyIndex = item => {
+    return item == this[0];
+  };
+
+  return childs.findIndex(findMyIndex);
+};
+
+_core__WEBPACK_IMPORTED_MODULE_1__["default"].prototype.find = function (selector) {
+  let numberOfItems = 0;
+  let counter = 0;
+  const copyObj = Object.assign({}, this);
+
+  for (let i = 0; i < copyObj.length; i++) {
+    const arr = copyObj[i].querySelectorAll(selector);
+
+    if (arr.length == 0) {
+      continue;
+    }
+
+    for (let j = 0; j < arr.length; j++) {
+      this[counter] = arr[j];
+      counter++;
+    }
+
+    numberOfItems += arr.length;
+  }
+
+  this.length = numberOfItems;
+  const objLength = Object.keys(this).length;
+
+  for (; numberOfItems < objLength; numberOfItems++) {
+    delete this[numberOfItems];
+  }
+
   return this;
 };
 
@@ -2119,7 +2163,10 @@ __webpack_require__.r(__webpack_exports__);
 Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('button').on('click', function () {
   Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('div').eq(1).toggleClass('active');
 });
-console.log(Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('button').html('hello'));
+Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('div').click(function () {
+  console.log(Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])(this).index());
+});
+console.log(Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('div').eq(2).find('.some'));
 
 /***/ })
 
