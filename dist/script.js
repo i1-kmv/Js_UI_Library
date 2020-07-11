@@ -2287,8 +2287,7 @@ Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('div').click(function (
 }); //console.log($('div').eq(2).find('.some'));
 //console.log($('.some').closest('.findme'));
 //console.log($('.more').eq(0).siblings());
-
-Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('button').fadeIn(2000);
+//$('button').fadeIn(2000);
 
 /***/ })
 

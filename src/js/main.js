@@ -15,4 +15,4 @@ $('div').click(function() {
 
 //console.log($('.more').eq(0).siblings());
 
-$('button').fadeIn(2000);
+//$('button').fadeIn(2000);
