@@ -41,3 +41,4 @@ $('#trigger').click(() => $('#trigger').createModal({
       ]
     }
 }));
+
